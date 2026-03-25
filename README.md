@@ -57,7 +57,7 @@ Add the plugin to your `opencode.json`:
 // opencode.json
 {
   "command": {
-    "format": { "template": "!pnpm format", "description": "Formatted code" },
+    "lint": { "template": "!pnpm lint", "description": "Linted code" },
     "test": { "template": "!pnpm test", "description": "Tests passed" },
   },
 }
@@ -70,7 +70,7 @@ Add the plugin to your `opencode.json`:
 {
   "command": {
     "lint": { "template": "!npm run lint", "description": "Linted code" },
-    "build": { "template": "!npm run build", "description": "Build complete" },
+    "test": { "template": "!npm run test", "description": "Tests passed" },
   },
 }
 ```
@@ -81,8 +81,8 @@ Add the plugin to your `opencode.json`:
 // opencode.json
 {
   "command": {
-    "check": { "template": "!bun run check", "description": "Checks passed" },
-    "dev": { "template": "!bun run dev", "description": "Dev server started" },
+    "lint": { "template": "!bun run lint", "description": "Linted code" },
+    "test": { "template": "!bun run test", "description": "Tests passed" },
   },
 }
 ```
