@@ -16,8 +16,6 @@ Add the plugin to your `opencode.json`:
 }
 ```
 
-Or copy `index.ts` into `~/.config/opencode/plugins/`.
-
 ## Usage
 
 Define commands in your `opencode.json` with a `!` prefix in the template:
