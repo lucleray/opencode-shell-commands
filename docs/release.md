@@ -12,26 +12,22 @@ No `NPM_TOKEN` secret needed — publishing uses OIDC.
 
 ## How to release
 
-1. Bump the version in `package.json`:
+1. Bump the version in `package.json`
+
+2. Commit, tag, and push:
 
 ```bash
-npm version patch  # 0.1.0 -> 0.1.1
-npm version minor  # 0.1.0 -> 0.2.0
-npm version major  # 0.1.0 -> 1.0.0
-```
-
-2. Push the commit and tag:
-
-```bash
+git add -A && git commit -m "v0.x.x"
+git tag v0.x.x -m "v0.x.x"
 git push origin main --follow-tags
 ```
 
-3. The `publish.yml` workflow will trigger, then wait for your approval on the `npm` environment before publishing.
+3. Approve the release on the `npm` environment in [GitHub Actions](https://github.com/lucleray/opencode-shell-commands/actions).
 
 ## What happens
 
 - `ci.yml` runs on every push to `main` and on PRs — builds and typechecks
-- `publish.yml` runs only when a `v*` tag is pushed — builds and publishes to npm via OIDC (no tokens)
+- `publish.yml` runs when a `v*` tag is pushed — waits for approval, then publishes to npm via OIDC
 
 ## Manual publish
 
