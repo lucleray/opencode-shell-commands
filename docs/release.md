@@ -2,8 +2,12 @@
 
 ## Prerequisites
 
-- `NPM_TOKEN` secret set in GitHub repo settings (Settings > Secrets > Actions)
-- npm account with publish access to `opencode-shell-commands`
+- npm trusted publishing configured on [npmjs.com](https://www.npmjs.com/package/opencode-shell-commands/access) (Settings > Trusted Publisher > GitHub Actions)
+  - Organization/user: `lucleray`
+  - Repository: `opencode-shell-commands`
+  - Workflow filename: `publish.yml`
+
+No `NPM_TOKEN` secret needed — publishing uses OIDC.
 
 ## How to release
 
@@ -26,7 +30,7 @@ git push origin main --follow-tags
 ## What happens
 
 - `ci.yml` runs on every push to `main` and on PRs — builds and typechecks
-- `publish.yml` runs only when a `v*` tag is pushed — builds and publishes to npm
+- `publish.yml` runs only when a `v*` tag is pushed — builds and publishes to npm via OIDC (no tokens)
 
 ## Manual publish
 
