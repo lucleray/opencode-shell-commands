@@ -1,6 +1,6 @@
 {
   "name": "opencode-shell-commands",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Run shell commands directly from OpenCode custom commands, skipping the LLM entirely.",
   "type": "module",
   "main": "dist/index.js",
