@@ -1,53 +1,106 @@
 # opencode-shell-commands
 
-An [OpenCode](https://opencode.ai) plugin that lets you run shell commands directly from custom commands, skipping the LLM entirely.
-
-## Why?
-
-OpenCode custom commands always go through the LLM, even for simple tasks like opening an editor. This plugin intercepts commands prefixed with `!` and runs them as shell commands instead — instant execution, no tokens wasted.
+An [OpenCode](https://opencode.ai) plugin that lets you execute shell for custom commands, skipping the LLM entirely.
 
 ## Install
 
 Add the plugin to your `opencode.json`:
 
-```json
+```jsonc
 {
-  "plugin": ["opencode-shell-commands"]
+  "plugin": ["opencode-shell-commands"],
 }
 ```
 
 ## Usage
 
-Define commands in your `opencode.json` with a `!` prefix in the template:
+1. Add a custom command that starts with `!`:
 
-```json
+```jsonc
+// opencode.json
 {
   "command": {
-    "cursor": {
-      "template": "!cursor .",
-      "description": "Opened Cursor"
-    },
-    "code": {
-      "template": "!code .",
-      "description": "Opened VS Code"
-    },
-    "format": {
-      "template": "!pnpm format",
-      "description": "Formatted code"
-    }
-  }
+    "code": { "template": "!code .", "description": "Opened VS Code" },
+  },
 }
 ```
 
-Then run them in OpenCode:
+2. Type `/code` and VS Code opens instantly. No LLM round-trip.
 
-```
-/cursor
-/code
-/format
+## Examples
+
+### Open current workspace in Cursor
+
+```jsonc
+// opencode.json
+{
+  "command": {
+    "cursor": { "template": "!cursor .", "description": "Opened Cursor" },
+  },
+}
 ```
 
-The shell command runs immediately in the workspace directory. A toast notification shows the `description` on success.
+### Open current workspace in Zed
+
+```jsonc
+// opencode.json
+{
+  "command": {
+    "zed": { "template": "!zed .", "description": "Opened Zed" },
+  },
+}
+```
+
+### Run pnpm commands
+
+```jsonc
+// opencode.json
+{
+  "command": {
+    "format": { "template": "!pnpm format", "description": "Formatted code" },
+    "test": { "template": "!pnpm test", "description": "Tests passed" },
+  },
+}
+```
+
+### Run npm commands
+
+```jsonc
+// opencode.json
+{
+  "command": {
+    "lint": { "template": "!npm run lint", "description": "Linted code" },
+    "build": { "template": "!npm run build", "description": "Build complete" },
+  },
+}
+```
+
+### Run bun commands
+
+```jsonc
+// opencode.json
+{
+  "command": {
+    "check": { "template": "!bun run check", "description": "Checks passed" },
+    "dev": { "template": "!bun run dev", "description": "Dev server started" },
+  },
+}
+```
+
+### Git shortcuts
+
+```jsonc
+// opencode.json
+{
+  "command": {
+    "gcm": {
+      "template": "!git checkout main",
+      "description": "Checked out main",
+    },
+    "gs": { "template": "!git status", "description": "Git status" },
+  },
+}
+```
 
 ## How it works
 
