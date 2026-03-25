@@ -3,13 +3,21 @@
   "version": "0.1.0",
   "description": "Run shell commands directly from OpenCode custom commands, skipping the LLM entirely.",
   "type": "module",
-  "main": "index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
-    ".": "./index.ts"
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
   },
   "files": [
-    "index.ts"
+    "dist"
   ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit"
+  },
   "keywords": [
     "opencode",
     "plugin",
@@ -26,6 +34,7 @@
     "@opencode-ai/plugin": ">=1.0.0"
   },
   "devDependencies": {
-    "@opencode-ai/plugin": "latest"
+    "@opencode-ai/plugin": "latest",
+    "typescript": "^5.0.0"
   }
 }
