@@ -106,8 +106,10 @@ Add the plugin to your `opencode.json`:
 
 1. On startup, the plugin scans your commands for `!` prefixed templates
 2. When you run one of those commands, the `command.execute.before` hook intercepts it
-3. The shell command runs directly via `sh -c` in your workspace
-4. A toast confirms success, and the LLM call is skipped
+3. The shell command runs via `sh -c` in your workspace
+4. If the command produces output (e.g. `git status`), it's added to the session context
+5. If the command is silent (e.g. `cursor .`), a toast confirms success
+6. The LLM call is skipped in both cases
 
 ## License
 

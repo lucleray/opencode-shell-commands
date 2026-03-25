@@ -20,10 +20,17 @@ export const ShellCommandsPlugin: Plugin = async ({ $, client, directory }) => {
     'command.execute.before': async (input) => {
       const cmd = commands[input.command];
       if (!cmd) return;
-      await $`sh -c ${cmd.run}`.cwd(directory);
-      await client.tui.showToast({
-        body: { message: cmd.message, variant: 'success' },
-      });
+      const output = await $`sh -c ${cmd.run}`.cwd(directory).quiet().text();
+      if (output.trim()) {
+        await client.session.shell({
+          path: { id: input.sessionID },
+          body: { command: cmd.run, agent: 'build' },
+        });
+      } else {
+        await client.tui.showToast({
+          body: { message: cmd.message, variant: 'success' },
+        });
+      }
       throw new Error('skip');
     },
   };
