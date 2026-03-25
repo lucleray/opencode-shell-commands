@@ -6,6 +6,7 @@
   - Organization/user: `lucleray`
   - Repository: `opencode-shell-commands`
   - Workflow filename: `publish.yml`
+  - Environment name: `npm`
 
 No `NPM_TOKEN` secret needed — publishing uses OIDC.
 
@@ -25,7 +26,7 @@ npm version major  # 0.1.0 -> 1.0.0
 git push origin main --follow-tags
 ```
 
-3. The `publish.yml` workflow will automatically build and publish to npm.
+3. The `publish.yml` workflow will trigger, then wait for your approval on the `npm` environment before publishing.
 
 ## What happens
 
