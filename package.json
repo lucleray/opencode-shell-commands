@@ -1,0 +1,31 @@
+{
+  "name": "opencode-shell-commands",
+  "version": "0.1.0",
+  "description": "Run shell commands directly from OpenCode custom commands, skipping the LLM entirely.",
+  "type": "module",
+  "main": "index.ts",
+  "exports": {
+    ".": "./index.ts"
+  },
+  "files": [
+    "index.ts"
+  ],
+  "keywords": [
+    "opencode",
+    "plugin",
+    "shell",
+    "commands"
+  ],
+  "author": "Luc Leray",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lucleray/opencode-shell-commands.git"
+  },
+  "peerDependencies": {
+    "@opencode-ai/plugin": ">=1.0.0"
+  },
+  "devDependencies": {
+    "@opencode-ai/plugin": "latest"
+  }
+}
